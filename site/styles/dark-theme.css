@@ -1,0 +1,25 @@
+@media (prefers-color-scheme: dark){
+body {
+    color: #fff;
+    background-color: #2f3136;
+}.list-group-item.active {
+    color: black;
+    background-color: #007bff;
+    border-color: #007bff;
+}.list-group-item {
+    background-color: #212529;
+    border: 1px solid rgba(255,255,255,.125); 
+}.main-page{
+    background-color: #36393f;
+}.bottom-menu-buttons{
+    background-color: #212529;
+    border: 1px solid rgba(255,255,255,.125);
+}.logout{
+    color: #fff;
+    background-color: #212529;
+    border: 1px solid rgba(255,255,255,.125); 
+}.icon-tabler-sun,.icon-tabler-moon{
+    stroke: #fff;
+    fill: #fff;
+}
+}

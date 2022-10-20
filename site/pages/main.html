@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      href="../images/favicon.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="/site/styles/style.css">
+    <link rel="stylesheet" href="/site/styles/dark-theme.css">
+    <script src="/site/script.js"></script>
+    
+    <title>Discord-Bot</title>
+  </head>
+  <body class="main">
+    <div class="container">
+      <ul class="list-group">
+        <li class="list-group-item active" onclick="">Рассылка</li>
+        <li class="list-group-item">Ожидающие отправки</li>
+        <li class="list-group-item">Отправленные(VK)</li>
+        <li class="list-group-item">Отправленные(Discord)</li>
+      </ul>
+    </div>
+    <div class="bottom-menu">
+      <button class="bottom-menu-buttons logout">Выйти</button>
+      <button class="bottom-menu-buttons theme-moon active">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+        </svg>
+      </button>
+      <button class="bottom-menu-buttons theme-sun active">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <circle cx="12" cy="12" r="4" />
+          <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="main-page">
+      <div class="main-page-inner active">
+        <div class="main-page-sender">
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Заголовок</span>
+            </div>
+            <input id="title" type="text" class="form-control" placeholder="Заголовок(не обязателен)" aria-label="Заголовок" aria-describedby="url">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"
+              >Ваш текст</span>
+            </div>
+            <textarea
+              id="text"
+              class="form-control"
+              aria-label="Ваш текст 123"
+              style="height: 38px;min-height: 38px;"
+            ></textarea>
+          </div>
+          <div class="embed-sender1">
+            <div class="embed-sender1-1">
+              <textarea name="" id="" class="embed-title" cols="30" rows="10">ok</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="embed-preview">
+          1
+        </div>
+      </div>
+      <div class="main-page-inner">
+        <div class="main-page-block">
+          <div class="main-page-cards">1</div>
+          <div class="main-page-cards">2</div>
+          <div class="main-page-cards">3</div>
+          <div class="main-page-cards">4</div>
+          <div class="main-page-cards">5</div>
+        </div>
+      </div>
+      <div class="main-page-inner">
+        <div class="main-page-block">
+          <div class="main-page-cards">6</div>
+          <div class="main-page-cards">7</div>
+          <div class="main-page-cards">8</div>
+          <div class="main-page-cards">9</div>
+          <div class="main-page-cards">10</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
