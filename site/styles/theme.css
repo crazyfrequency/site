@@ -1,0 +1,18 @@
+.dark-theme{
+    --main-text-color:  white;
+    --body-background: #2f3136;
+    --list-group-item-text-color: #fff;
+    --components-background-color: #212529;
+    --list-group-item-border: rgba(255,255,255,.125);
+    --main-page-background-color: #36393f;
+    --icons-color: #fff;
+}.light-theme{
+    --main-text-color: #212529;
+    --body-background-color: white;
+    --body-background: aliceblue;
+    --list-group-item-text-color: #fff;
+    --components-background-color: #fff;
+    --list-group-item-border: rgba(0,0,0,.125);
+    --main-page-background-color: white;
+    --icons-color: black;
+}

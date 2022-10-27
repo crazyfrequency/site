@@ -8,22 +8,22 @@
     />
     <link
       rel="shortcut icon"
-      href="../images/favicon.png"
+      href="/resource/images/favicon.png"
       type="image/png"
     />
-    <link rel="stylesheet" href="/site/styles/style.css">
-    <link rel="stylesheet" href="/site/styles/dark-theme.css">
-    <script src="/site/script.js"></script>
+    <link rel="stylesheet" href="/resource/styles/style.css">
+    <link rel="stylesheet" href="/resource/styles/theme.css">
+    <script src="/resource/script.js"></script>
     
     <title>Discord-Bot</title>
   </head>
-  <body class="main">
+  <body class="main light-theme">
     <div class="container">
       <ul class="list-group">
-        <li class="list-group-item active" onclick="">Рассылка</li>
-        <li class="list-group-item">Ожидающие отправки</li>
-        <li class="list-group-item">Отправленные(VK)</li>
-        <li class="list-group-item">Отправленные(Discord)</li>
+        <li class="list-group-item active" onclick="menu(this)">Рассылка</li>
+        <li class="list-group-item" onclick="menu(this)">Ожидающие отправки</li>
+        <li class="list-group-item" onclick="menu(this)">Отправленные(VK)</li>
+        <li class="list-group-item" onclick="menu(this)">Отправленные(Discord)</li>
       </ul>
     </div>
     <div class="bottom-menu">
@@ -70,8 +70,13 @@
             </div>
           </div>
         </div>
-        <div class="embed-preview">
+        <div class="embed-preview" 
+        onclick="embed_preview()">
+          <div class="embed-preview1">
+            1
+          </div>
         </div>
+        
       </div>
       <div class="main-page-inner">
         <div class="main-page-block">
