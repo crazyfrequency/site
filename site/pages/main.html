@@ -18,23 +18,42 @@
     <title>Discord-Bot</title>
   </head>
   <body class="main light-theme">
+    <div id="login" class="login active">
+      <div class="login-image"></div>
+      <div class="login-panel">
+        <div class="login-title">Login</div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Логин</span>
+          </div>
+          <input id="login_text" type="text" class="form-control" aria-label="Логин" aria-describedby="url">
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Пароль</span>
+          </div>
+          <input id="password_text" type="password" class="form-control" aria-label="Пароль" aria-describedby="url">
+        </div>
+        <button onclick="login(this)" class="input-group login-button"><div>login</div></button>
+      </div>
+    </div>
     <div class="container">
       <ul class="list-group">
-        <li class="list-group-item active" onclick="menu(this)">Рассылка</li>
-        <li class="list-group-item" onclick="menu(this)">Ожидающие отправки</li>
-        <li class="list-group-item" onclick="menu(this)">Отправленные(VK)</li>
-        <li class="list-group-item" onclick="menu(this)">Отправленные(Discord)</li>
+        <li id="b-send" class="list-group-item active" onclick="menu(this,event)" data-target="send">Рассылка</li>
+        <li id="b-waiting" class="list-group-item" onclick="menu(this,event)" data-target="waiting">Ожидающие отправки</li>
+        <li id="b-sended-vk" class="list-group-item" onclick="menu(this,event)" data-target="sended-vk">Отправленные(VK)</li>
+        <li id="b-sended-discord" class="list-group-item" onclick="menu(this,event)" data-target="sended-discord">Отправленные(Discord)</li>
       </ul>
     </div>
     <div class="bottom-menu">
       <button class="bottom-menu-buttons logout">Выйти</button>
-      <button class="bottom-menu-buttons theme-moon active">
+      <button class="bottom-menu-buttons theme-moon active" onclick="select_theme(this)">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
         </svg>
       </button>
-      <button class="bottom-menu-buttons theme-sun active">
+      <button class="bottom-menu-buttons theme-sun active" onclick="select_theme(this)">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
           <circle cx="12" cy="12" r="4" />
@@ -44,7 +63,7 @@
     </div>
     
     <div class="main-page">
-      <div class="main-page-inner active">
+      <div id="send" class="main-page-inner active">
         <div class="main-page-sender">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -78,7 +97,7 @@
         </div>
         
       </div>
-      <div class="main-page-inner">
+      <div id="sended-vk" class="main-page-inner">
         <div class="main-page-block">
           <div class="main-page-cards">1</div>
           <div class="main-page-cards">2</div>
@@ -87,7 +106,7 @@
           <div class="main-page-cards">5</div>
         </div>
       </div>
-      <div class="main-page-inner">
+      <div id="sended-discord" class="main-page-inner">
         <div class="main-page-block">
           <div class="main-page-cards">6</div>
           <div class="main-page-cards">7</div>

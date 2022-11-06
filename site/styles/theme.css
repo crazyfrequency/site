@@ -6,6 +6,7 @@
     --list-group-item-border: rgba(255,255,255,.125);
     --main-page-background-color: #36393f;
     --icons-color: #fff;
+    --embed-preview-background-color: #5e636e;
 }.light-theme{
     --main-text-color: #212529;
     --body-background-color: white;
@@ -14,5 +15,6 @@
     --components-background-color: #fff;
     --list-group-item-border: rgba(0,0,0,.125);
     --main-page-background-color: white;
-    --icons-color: black;
+    --icons-color: #443c3c;
+    --embed-preview-background-color: #ced4da;
 }
