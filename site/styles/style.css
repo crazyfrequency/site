@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    transition: color 1s;
 }html{
     height: 100%;
 }body{
@@ -15,12 +16,14 @@
     line-height: 1.5;
     height: 100%;
     background-color: var();
+}.menu-button{
+    display: none;
 }.list-group{
     width: 210px;
     margin: 1rem;
     padding: 0;
     margin-bottom: 4rem;
-    overflow: scroll;
+    overflow-y: scroll;
 }.list-group-item.active {
     z-index: 2;
     color: var(--list-group-item-text-color);
@@ -38,7 +41,8 @@
     margin-bottom: -1px;
     margin-right: auto;
     background-color: var(--components-background-color);
-    border: 1px solid var(--list-group-item-border); 
+    border: 1px solid var(--list-group-item-border);
+    user-select: none;
 }.container{
     height: 100%;
     display: flex;
@@ -74,11 +78,15 @@
     border: 1px solid var(--list-group-item-border);
 }.bottom-menu-buttons.active{
     display: none;
-}.icon-tabler-sun,.icon-tabler-moon{
+}.icon-tabler{
+    stroke: var(--icons-color);
+    fill: var(--icons-color);
     position: relative;
     display: flex;
     align-items: flex-end;
     margin-bottom: -5px;
+}.icon-tabler-info-circle{
+    fill: none;
 }.main-page-inner{
     -webkit-box-sizing: border-box;
     box-sizing: content-box;
@@ -122,6 +130,19 @@
     font-family: inherit;
     font-size: 1rem;
     resize: vertical;
+}.form-control-subform{
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+    height: calc(2.25rem + 2px);
+    border: 0;
+    border: 1px solid #ced4da;
+    border-right: 0;
+    padding: .375rem .75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
 }.input-group-prepend{
     padding: .375rem .75rem;
     margin-right: -1px;
@@ -142,7 +163,6 @@
     background-color: black;
 }.embed-title{
     display: flex;
-    
     flex: 1 1 auto;
     width: 1%;
     border: 0;
@@ -164,15 +184,21 @@
     transition: right 1s;
 }.embed-preview.active{
     right: 0;
-}.embed-preview1{
+}.embed-preview2{
+    position: fixed;
+    display: block;
+    top: 47%;
+    right: -2.9rem;
+    rotate: 90deg;
+}.embed-preview.active div.embed-preview2{
     display: none;
+}.embed-preview1{
+    display: block;
     width: 100%;
     padding: .5rem;
     transition-duration: 1s;
     transition-property: all;
-}.embed-preview1.active{
-    display: block;
-}.icon-tabler-sun,.icon-tabler-moon{
+}.em.icon-tabler-sun,.icon-tabler-moon{
     stroke: var(--icons-color);
     fill: var(--icons-color);
 }.login{
@@ -183,6 +209,9 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    transition: opacity 1s ease-in-out;
+}.login.invisible{
+    opacity: 0;
 }.login.active{
     display: flex;
 }.login-panel{
@@ -230,6 +259,131 @@
     border-width: 3px;
 }.login-button.active div{
     animation: loading1 5s linear infinite;
+}.form-control-checkbox{
+    position: relative;
+    margin-bottom: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: calc(2.25rem + 2px);
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+}#checkbox_send_timer[type=checkbox]{
+    display: none;
+}.form-control-checkbox div.checkbox_send_2{
+    display: none;
+}input:checked ~ .form-control-checkbox div.checkbox_send_1{
+    display: none;
+}input:checked ~ .form-control-checkbox div.checkbox_send_2{
+    display: block;
+}#colapse_time_menu{
+    height: 0;
+    overflow: hidden;
+    transition-duration: 1s;
+    transition-property: all;
+}#colapse_time_menu :last-child {
+    margin-bottom: 0;
+}input:checked ~ #colapse_time_menu{
+    height: 6.75rem;
+}.inv{
+    display: none;
+}.checkbox-send{
+    display: flex;
+    width: 1%;
+    flex: 1 1 auto;
+    user-select: none;
+    align-items: center;
+    padding: 0;
+    align-items: center;
+}.checkbox-send label{
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}.checkbox-send:hover,.form-control-checkbox:hover{
+    background-color: #c2c3c5;
+}.checkbox-send-colapse{
+    width: 1%;
+    flex: 1 1 auto;
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    overflow: hidden;
+    padding: 0;
+    transition: all 1s;
+    border-width: 0;
+    border-radius: 0 0 .25rem .25rem;
+    height: fit-content;
+}.checkbox-send-colapse.active{
+    transform: scaleY(1);
+    border-width: 1px;
+}.input-group.vk-dis,.input-group.vk-dis label{
+    margin-bottom: 0;
+}.input-group.vk-dis1,.input-group.vk-dis1 label{
+    margin-top: 0;
+    border-top-width: 0;
+}.checkbox-send input:checked~label{
+    background-color: #007bff;
+}.input-group-prepend label.input-group{
+    border-radius: .25rem;
+}.checkbox-send-colapse > div{
+    display: block;
+}.embed-discord{
+    margin: 1rem;
+    background: rgb(54, 57, 63);
+}.embed-discord > .title{
+    background: var(--embed-preview-background-color);
+}.embed-discord .message{
+    padding-left: 72px;
+    padding-right: 48px !important;
+    margin-top: 3rem;
+    color: #fff;
+}.embed-discord .message .message-title *{
+    display: inline-block;
+}.embed-discord-avatar{
+    position: absolute;
+    left: 44px;
+    margin-top: calc(4px - .125rem);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-flex: 0;
+}.embed-discord .message .bot{
+    border-radius: .1875rem;
+    background-color: hsl(235,calc(85.6%),64.7%);
+    font-weight: 500;
+    font-family: inherit;
+    height: .9375rem;
+    padding: 0 .275rem;
+    margin-top: .075em;
+    border-radius: .1875rem;
+    font-size: .625rem;
+}.embed-message-embed{
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: .25rem;
+    grid-template-columns: repeat(auto-fill,minmax(100%,1fr));
+    text-indent: 0;
+    min-height: 0;
+    min-width: 0;
+    padding-top: .125rem;
+    padding-bottom: .125rem;
+    position: relative;
+}.embed-message-embed > div{
+    border-left: 4px solid #0f0f0f;
+    background: rgb(47, 49, 54);
+    border-radius: 4px;
 }
 
 @keyframes backgroundAnimation{

@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="/resource/styles/style.css">
     <link rel="stylesheet" href="/resource/styles/theme.css">
+    <link rel="stylesheet" href="/resource/styles/mobile.css">
     <script src="/resource/script.js"></script>
     
     <title>Discord-Bot</title>
@@ -26,16 +27,24 @@
           <div class="input-group-prepend">
               <span class="input-group-text">Логин</span>
           </div>
-          <input id="login_text" type="text" class="form-control" aria-label="Логин" aria-describedby="url">
+          <input id="login_text" type="text" class="form-control" aria-label="Логин" onkeydown="if(event.keyCode==13) password_text.focus()">
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
               <span class="input-group-text">Пароль</span>
           </div>
-          <input id="password_text" type="password" class="form-control" aria-label="Пароль" aria-describedby="url">
+          <input id="password_text" type="password" class="form-control" aria-label="Пароль" onkeydown="if(event.keyCode==13) login_button.click()">
         </div>
-        <button onclick="login(this)" class="input-group login-button"><div>login</div></button>
+        <button id="login_button" onclick="login(this)" class="input-group login-button"><div>login</div></button>
       </div>
+    </div>
+    <div class="menu-button" onclick="button_click(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+     </svg>
     </div>
     <div class="container">
       <ul class="list-group">
@@ -46,7 +55,7 @@
       </ul>
     </div>
     <div class="bottom-menu">
-      <button class="bottom-menu-buttons logout">Выйти</button>
+      <button class="bottom-menu-buttons logout" onclick="logout()">Выйти</button>
       <button class="bottom-menu-buttons theme-moon active" onclick="select_theme(this)">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -60,8 +69,15 @@
           <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
         </svg>
       </button>
+      <button class="bottom-menu-buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <circle cx="12" cy="12" r="9"></circle>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          <polyline points="11 12 12 12 12 16 13 16"></polyline>
+        </svg>
+      </button>
     </div>
-    
     <div class="main-page">
       <div id="send" class="main-page-inner active">
         <div class="main-page-sender">
@@ -69,7 +85,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Заголовок</span>
             </div>
-            <input id="title" type="text" class="form-control" placeholder="Заголовок(не обязателен)" aria-label="Заголовок" aria-describedby="url">
+            <input id="title" type="text" class="form-control" placeholder="Заголовок(не обязателен)" maxlength="256">
           </div>
           <div class="input-group">
             <div class="input-group-prepend">
@@ -81,21 +97,121 @@
               class="form-control"
               aria-label="Ваш текст 123"
               style="height: 38px;min-height: 38px;"
+              maxlength="4096"
             ></textarea>
           </div>
-          <div class="embed-sender1">
-            <div class="embed-sender1-1">
-              <textarea name="" id="" class="embed-title" cols="30" rows="10">ok</textarea>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Ссылка на картинку</span>
+            </div>
+            <input id="image_url" type="url" class="form-control" placeholder="Картинок в сумме должно быть не более 10!!!">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Цвет</span>
+            </div>
+            <input id="color" type="color" class="form-control" value="#0000ff">
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Время отправки</span>
+            </div>
+            <input id="start_send_time" type="datetime-local" class="form-control" step="1">
+          </div>
+          <input id="checkbox_send_timer" type="checkbox">
+          <label class="input-group form-control-checkbox" for="checkbox_send_timer">
+            <div class="checkbox_send_1">
+              Отправить один раз
+            </div>
+            <div class="checkbox_send_2">
+              Отправить несколько раз
+            </div>
+          </label>
+          <div id="colapse_time_menu" class="timer-send">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">Прекратить отправку</span>
+              </div>
+              <input id="end_send_time" type="datetime-local" class="form-control" step="1">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">Интервал</span>
+              </div>
+              <input id="step_send_time_d" type="number" class="form-control-subform" step="1" min="0" placeholder="дни">
+              <input id="step_send_time" type="time" class="form-control" step="1" >
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Интервал</span>
+            </div>
+            <input id="end_send_time" type="datetime-local" class="form-control" step="1" >
+          </div>
+          <div class="input-group vk-dis">
+            <div class="input-group-prepend checkbox-send" style="border-radius: .25rem 0 0 0;">
+              <input id="checkbox_send_discord" class="inv" type="checkbox" onchange="vk_discord_colapse()" autocomplete="off">
+              <label class="input-group" for="checkbox_send_discord">
+                Отправить в discord
+              </label>
+            </div>
+            <div class="input-group-prepend checkbox-send" style="border-radius: 0 .25rem 0 0;">
+              <input id="checkbox_send_vk" class="inv" type="checkbox" onchange="vk_discord_colapse()" autocomplete="off">
+              <label class="input-group" for="checkbox_send_vk">
+                Отправить в vk
+              </label>
+            </div>
+          </div>
+          <div class="input-group vk-dis1">
+            <div class="input-group-prepend checkbox-send-colapse">
+              
+            </div>
+            <div class="input-group-prepend checkbox-send-colapse">
+              
             </div>
           </div>
         </div>
         <div class="embed-preview" 
         onclick="embed_preview()">
+          <div class="embed-preview2">Предпросмотр</div>
           <div class="embed-preview1">
-            1
+            <div class="embed-discord">
+              <div class="title">
+                Discord
+              </div>
+              <div class="message">
+                <div class="message-title">
+                  <img
+                    src="https://cdn.discordapp.com/avatars/923614449066205204/1b1c28e21b63e71590da1e2384f8a4d9.webp?size=80"
+                    class="embed-discord-avatar">
+                  <div class="title">
+                    Рокфор
+                  </div>
+                  <div class="bot">
+                    БОТ
+                  </div>
+                  <div style="color: hsl(214,calc(4%),65.3%); ">хз когда, в 13:50</div>
+                </div>
+                <div class="embed-message-embed">
+                  <div>
+                    <div>123</div>
+                    <div>321</div>
+                    <div>2321</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
+      </div>
+      <div id="waiting" class="main-page-inner">
+        <div class="main-page-block">
+          <div class="main-page-cards">1</div>
+          <div class="main-page-cards">2</div>
+          <div class="main-page-cards">3</div>
+          <div class="main-page-cards">4</div>
+          <div class="main-page-cards">5</div>
+        </div>
       </div>
       <div id="sended-vk" class="main-page-inner">
         <div class="main-page-block">

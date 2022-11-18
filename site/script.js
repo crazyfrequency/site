@@ -1,4 +1,13 @@
 var allpages = [];
+var images_elements=[],
+url_for_image_count=1,
+channels={
+    vk:{
+
+    },discord:{
+        
+    }
+};
 async function main(){
     let theme = Number(localStorage.getItem("theme")),
     darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -35,7 +44,10 @@ async function main(){
     }
     let res = await fetch("/api/login/check").catch(()=>null);
     if(res.ok){
-        document.getElementById("login").classList.remove("active");
+        document.getElementById("login").classList.add("invisible");
+        setTimeout(async()=>{
+            document.getElementById("login").classList.remove("active");
+        },1000)
     }
     
 }
@@ -53,17 +65,17 @@ window.onpopstate=()=>{
 }
 async function embed_preview(){
     
-    let prev1 = document.getElementsByClassName("embed-preview")[0],
-    prev2 = document.getElementsByClassName("embed-preview1")[0];
-    if(prev1.classList.contains("active")){
-        prev1.classList.remove("active");
-        prev2.classList.remove("active");
-    }else{
-        prev1.classList.add("active");
-        prev2.classList.add("active");
-    }
+    let prev1 = document.getElementsByClassName("embed-preview")[0];
+    if(prev1.classList.contains("active")) 
+        prev1.classList.remove("active")
+    else prev1.classList.add("active");
+    
 }
-
+async function button_click(element){
+    if(element.classList.contains("active")) 
+        element.classList.remove("active")
+    else element.classList.add("active");
+}
 async function login(element){
     element.classList.add("active");
     let res = await fetch("/api/login",{
@@ -73,13 +85,16 @@ async function login(element){
         login:login_text.value,
         password:password_text.value,
     })}).catch(()=>null);
-
-    element.classList.remove("active");
-    document.getElementById("login").classList.remove("active");
+    document.getElementById("login").classList.add("invisible");
+    setTimeout(async()=>{
+        element.classList.remove("active");
+        document.getElementById("login").classList.remove("active");
+    },1000)
+    
 }
 
 function menu(element,event){
-    if(event.ctrlKey) return window.open("../"+element.dataset.target, '_blank')
+    if(event.ctrlKey) return window.open("./"+element.dataset.target, '_blank')
     for(let e of document.getElementsByClassName("list-group-item")){
         e.classList.remove("active");
     }
@@ -88,7 +103,7 @@ function menu(element,event){
     }
     element.classList.add("active");
     document.getElementById(element.dataset.target).classList.add("active");
-    history.pushState(null,null,"../"+element.dataset.target)
+    history.pushState(null,null,"./"+element.dataset.target)
 }
 
 function select_theme(element){
@@ -107,3 +122,23 @@ function select_theme(element){
     }
 }
 
+async function logout(){
+    fetch("/api/logout",{
+        method:"POST",
+    }).catch(()=>null);
+    document.getElementById("login").classList.add("active");
+    setTimeout(()=>{
+        document.getElementById("login").classList.remove("invisible");
+    },10)
+    
+}
+
+function vk_discord_colapse(){
+    let el = document.getElementsByClassName("input-group vk-dis1")[0];
+    if(checkbox_send_vk.checked)
+        el.children[1].classList.add("active")
+    else el.children[1].classList.remove("active");
+    if(checkbox_send_discord.checked) 
+        el.children[0].classList.add("active")
+    else el.children[0].classList.remove("active");
+}
